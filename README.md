@@ -10,7 +10,7 @@ I will work on it in the future but atm it does what i need it to do.
 
 # Why dont you use the TMX Randomiser instead?
 Good Question! I wanted a programm for Multiplayer. The TMX Randomiser is just for soloplay.
-This Programm is used to download the .Gpx files directly to an specified folder so they can be used in an Trackmania server.
+This Programm is used to download the .Gpx files directly to an specified folder so they can be used on an Trackmania server.
 
 # Use
 to use the Software you need to checkout the Repo (I used VS-Code to develop it). In "Porgramm.cs" you need to change the "mapPath to the folder where you want the map folders to be created.
