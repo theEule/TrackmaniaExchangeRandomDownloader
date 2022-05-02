@@ -1,0 +1,17 @@
+H:\AA_Dokumente\Programmieren\VS-Code\TrackmaniaExchangeRandomDownloader\bin\Release\net6.0\TrackmaniaExchangeRandomDownloader.exe
+H:\AA_Dokumente\Programmieren\VS-Code\TrackmaniaExchangeRandomDownloader\bin\Release\net6.0\TrackmaniaExchangeRandomDownloader.deps.json
+H:\AA_Dokumente\Programmieren\VS-Code\TrackmaniaExchangeRandomDownloader\bin\Release\net6.0\TrackmaniaExchangeRandomDownloader.runtimeconfig.json
+H:\AA_Dokumente\Programmieren\VS-Code\TrackmaniaExchangeRandomDownloader\bin\Release\net6.0\TrackmaniaExchangeRandomDownloader.dll
+H:\AA_Dokumente\Programmieren\VS-Code\TrackmaniaExchangeRandomDownloader\bin\Release\net6.0\TrackmaniaExchangeRandomDownloader.pdb
+H:\AA_Dokumente\Programmieren\VS-Code\TrackmaniaExchangeRandomDownloader\bin\Release\net6.0\Newtonsoft.Json.dll
+H:\AA_Dokumente\Programmieren\VS-Code\TrackmaniaExchangeRandomDownloader\obj\Release\net6.0\TrackmaniaExchangeRandomDownloader.csproj.AssemblyReference.cache
+H:\AA_Dokumente\Programmieren\VS-Code\TrackmaniaExchangeRandomDownloader\obj\Release\net6.0\TrackmaniaExchangeRandomDownloader.GeneratedMSBuildEditorConfig.editorconfig
+H:\AA_Dokumente\Programmieren\VS-Code\TrackmaniaExchangeRandomDownloader\obj\Release\net6.0\TrackmaniaExchangeRandomDownloader.AssemblyInfoInputs.cache
+H:\AA_Dokumente\Programmieren\VS-Code\TrackmaniaExchangeRandomDownloader\obj\Release\net6.0\TrackmaniaExchangeRandomDownloader.AssemblyInfo.cs
+H:\AA_Dokumente\Programmieren\VS-Code\TrackmaniaExchangeRandomDownloader\obj\Release\net6.0\TrackmaniaExchangeRandomDownloader.csproj.CoreCompileInputs.cache
+H:\AA_Dokumente\Programmieren\VS-Code\TrackmaniaExchangeRandomDownloader\obj\Release\net6.0\TrackmaniaExchangeRandomDownloader.csproj.CopyComplete
+H:\AA_Dokumente\Programmieren\VS-Code\TrackmaniaExchangeRandomDownloader\obj\Release\net6.0\TrackmaniaExchangeRandomDownloader.dll
+H:\AA_Dokumente\Programmieren\VS-Code\TrackmaniaExchangeRandomDownloader\obj\Release\net6.0\refint\TrackmaniaExchangeRandomDownloader.dll
+H:\AA_Dokumente\Programmieren\VS-Code\TrackmaniaExchangeRandomDownloader\obj\Release\net6.0\TrackmaniaExchangeRandomDownloader.pdb
+H:\AA_Dokumente\Programmieren\VS-Code\TrackmaniaExchangeRandomDownloader\obj\Release\net6.0\TrackmaniaExchangeRandomDownloader.genruntimeconfig.cache
+H:\AA_Dokumente\Programmieren\VS-Code\TrackmaniaExchangeRandomDownloader\obj\Release\net6.0\ref\TrackmaniaExchangeRandomDownloader.dll

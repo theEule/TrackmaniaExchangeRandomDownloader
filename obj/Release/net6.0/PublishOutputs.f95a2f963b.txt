@@ -1,0 +1,6 @@
+H:\AA_Dokumente\Programmieren\VS-Code\TrackmaniaExchangeRandomDownloader\bin\Release\net6.0\publish\TrackmaniaExchangeRandomDownloader.exe
+H:\AA_Dokumente\Programmieren\VS-Code\TrackmaniaExchangeRandomDownloader\bin\Release\net6.0\publish\TrackmaniaExchangeRandomDownloader.dll
+H:\AA_Dokumente\Programmieren\VS-Code\TrackmaniaExchangeRandomDownloader\bin\Release\net6.0\publish\TrackmaniaExchangeRandomDownloader.deps.json
+H:\AA_Dokumente\Programmieren\VS-Code\TrackmaniaExchangeRandomDownloader\bin\Release\net6.0\publish\TrackmaniaExchangeRandomDownloader.runtimeconfig.json
+H:\AA_Dokumente\Programmieren\VS-Code\TrackmaniaExchangeRandomDownloader\bin\Release\net6.0\publish\TrackmaniaExchangeRandomDownloader.pdb
+H:\AA_Dokumente\Programmieren\VS-Code\TrackmaniaExchangeRandomDownloader\bin\Release\net6.0\publish\Newtonsoft.Json.dll

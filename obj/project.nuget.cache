@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "YXU4cdQc5JBGIAXJJJAuBbfsHrMYxSOeKOeWP3Ms1i60KM1KSeM66RCRm4mlN8JzNgMhFYpax+ysIliMIZNNQg==",
+  "success": true,
+  "projectFilePath": "H:\\AA_Dokumente\\Programmieren\\VS-Code\\TrackmaniaExchangeRandomDownloader\\TrackmaniaExchangeRandomDownloader.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\loris\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}
