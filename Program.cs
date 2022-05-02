@@ -259,15 +259,5 @@ namespace HelloWorld
             return uri;
         }
 
-        static int getRandomPage()
-        {
-
-            int pageMin = 1;
-            int pageMax = 14;
-
-            var page = rand.Next(pageMin, pageMax);
-
-            return page;
-        }
     }
 }
