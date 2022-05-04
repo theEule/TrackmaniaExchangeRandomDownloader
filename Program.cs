@@ -4,7 +4,10 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-namespace HelloWorld
+using System.Xml;
+
+
+namespace TMERD
 {
     class Track
     {
@@ -20,13 +23,18 @@ namespace HelloWorld
         static string spacer = "-------------------------------------------------------------";
         static string spacerEnd = "-------------------------------------------------------------\n\n";
         static string uri = "https://trackmania.exchange/";
-        static string mapPath = @"C:\Users\loris\Documents\Trackmania\Maps\My Maps\";
+        static string mapPath = ""; // 
+        static string? mapFolderPath;
         static string etags = "34%2C23%2C5%2C8%2C28%2C31%2C6%2C37%2C4%2C12%2C10";
         static List<int> tags = new List<int>();
         static int mapCount;
         static HttpClient httpClient = new HttpClient();
         static Random rand;
         static string path = Environment.CurrentDirectory;
+
+        static Config config;
+        static XmlTextReader reader;
+
         static void Main(string[] args)
         {
 
@@ -34,11 +42,65 @@ namespace HelloWorld
 
             int input;
 
+            if (!File.Exists(@$"{path}\config.json"))
+            {
+
+                bool createFolderActive;
+                do
+                {
+                    createFolderActive = false;
+
+                    Console.Clear();
+                    Console.WriteLine("1. Copy the Path of the map Folder of your Trackmania installation.");
+                    Console.WriteLine("2. Paste it here: ");
+                    Console.Write("Path: ");
+                    mapFolderPath = Console.ReadLine();
+
+                    if (!Directory.Exists(mapFolderPath))
+                    {
+                        Console.WriteLine("Path could not be found! \n");
+                        Console.WriteLine(mapFolderPath);
+                        Console.WriteLine("\n Please try again!");
+                        Console.ReadKey();
+                        createFolderActive = true;
+                    }
+
+
+                } while (createFolderActive);
+
+                
+                config = new Config()
+                {
+                    mapFolder = @$"{mapFolderPath}\"
+                };
+
+                string json = JsonConvert.SerializeObject(config);
+                File.WriteAllText(@$"{path}\config.json", json);
+
+
+                mapPath = @$"{mapFolderPath}\";
+            }
+            else
+            {
+                var json = File.ReadAllText(@$"{path}\config.json");
+                var config = JsonConvert.DeserializeObject<Config>(json);
+                
+                if(config != null)
+                {
+                    mapPath = config.mapFolder;
+                }
+                else
+                {
+                    Console.WriteLine("Error Reading config! Delete config.json from Application folder and try again!");
+                    Console.ReadKey();
+                    Environment.Exit(0);
+                }
+            }
 
             Console.Clear();
 
             var time = DateTime.Now;
-            var name = $"{time.DayOfWeek}-{time.Year}_{time.Hour}.{time.Minute}.{time.Second}";
+            var name = $"TMERMD - {time.DayOfWeek}-{time.Year}_{time.Hour}.{time.Minute}.{time.Second}";
             Directory.CreateDirectory(@$"{mapPath}{name}");
 
             mapPath += name;
