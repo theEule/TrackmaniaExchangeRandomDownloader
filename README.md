@@ -13,7 +13,7 @@ Good Question! I wanted a programm for Multiplayer. The TMX Randomiser is just f
 This Programm is used to download the .Gpx files directly to an specified folder so they can be used on an Trackmania server.
 
 # Use
-To use the software just download the "Bin\Release\net6.0" folder, save it somewhere and run the "TrackmaniaExchangeRandomDownloader.exe"
+To use the software just download the "Bin\Release\net6.0\publish" folder, save it somewhere and run the "TrackmaniaExchangeRandomDownloader.exe"
 
 The programm will ask you to set the Path of the Map folder (or the path where you want your random maps to be stored). this will be saved in the config.json file. If you want to change the path, just delete that file.
 
