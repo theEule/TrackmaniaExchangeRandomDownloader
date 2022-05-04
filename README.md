@@ -20,7 +20,7 @@ The programm will ask you to set the Path of the Map folder (or the path where y
 The Programm will create a folder with the current date and time.
 
 After that you need to choose the Tags for your maps. If you just type "0" all of the shown tags will be selected.
-(FYI: There are some tags that are filtered on default (stuff like LOL, RPG etc.). these are definded in the "etags" Variable. If you want to change that, you need to delete or add tags there. "%2C" is the spacer between the Tags.)
+(FYI: There are some tags that are filtered on default (stuff like LOL, RPG etc.). these are definded in the "etags" Variable. If you want to change that, you need to clone the repository and change it in the code. "%2C" is the spacer between the Tags.)
 
 After the Tag selection you need set the number of maps you want.
 
