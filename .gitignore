@@ -5,6 +5,8 @@ obj/Debug/net6.0/TrackmaniaExchangeRandomDownloader.GeneratedMSBuildEditorConfig
 obj/Debug/net6.0/TrackmaniaExchangeRandomDownloader.pdb
 obj/Debug/net6.0/ref/TrackmaniaExchangeRandomDownloader.dll
 obj/Debug/net6.0/refint/TrackmaniaExchangeRandomDownloader.dll
+obj
 bin/Debug/net6.0/TrackmaniaExchangeRandomDownloader.dll
 bin/Debug/net6.0/TrackmaniaExchangeRandomDownloader.pdb
 bin/Release/net6.0/config.json
+config.json
