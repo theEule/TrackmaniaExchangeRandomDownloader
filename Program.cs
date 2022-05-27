@@ -36,6 +36,8 @@ namespace TMERD
         static Random rand;
         static string path = Environment.CurrentDirectory;
 
+        static int input;
+
         static Config config;
         static XmlTextReader reader;
 
@@ -80,108 +82,116 @@ namespace TMERD
         static async void drawMenu()
         {
             bool menu = true;
-            int input;
 
             if (!File.Exists(@$"{path}\config.json"))
             {
 
-                bool createFolderActive;
-                do
-                {
-                    createFolderActive = false;
-
-                    Console.Clear();
-                    Console.WriteLine("Couldnt find the config.json on your system. Lets create it:");
-                    Console.WriteLine("1. Copy the Path of the map Folder of your Trackmania installation.");
-                    Console.WriteLine("2. Paste it here: ");
-                    Console.Write("Path: ");
-                    mapFolderPath = Console.ReadLine();
-
-                    if (!Directory.Exists(mapFolderPath))
-                    {
-                        Console.WriteLine("Path could not be found! \n");
-                        Console.WriteLine(mapFolderPath);
-                        Console.WriteLine("\n Please try again!");
-                        Console.ReadKey();
-                        createFolderActive = true;
-                    }
-
-                } while (createFolderActive);
-
-                do
-                {
-                    Console.Clear();
-                    Console.WriteLine("Now you can set Tags that should be excluded.");
-
-                    if (eTags.Count != 0)
-                    {
-                        var eTagstring = "";
-                        eTags.ForEach(t =>
-                            {
-                                eTagstring += t + " ,";
-                            }
-                        );
-
-                        eTagstring = RemoveCharsEnd(eTagstring, 2);
-
-                        Console.Write($"Excluded Tags: {eTagstring}");
-                        Console.Write("\n");
-                    }
-
-                    drawTags();
-
-                    Console.Write("Input: ");
-                    input = Convert.ToInt32(Console.ReadLine());
-                    if (eTags.Contains(input))
-                    {
-                        Console.WriteLine("");
-                        Console.WriteLine("Tag bereits benutzt!");
-                    }
-                    else
-                    {
-                        eTags.Add(input);
-                    }
-
-                } while (input != 0);
-
-                var etags = BuildTagString(eTags);
-
-                config = new Config()
-                {
-                    mapFolder = @$"{mapFolderPath}\",
-                    excludedTags = etags
-                };
-
-                string json = JsonConvert.SerializeObject(config);
-                File.WriteAllText(@$"{path}\config.json", json);
-
-
-                mapPath = @$"{mapFolderPath}\";
-
+                CreateConfig();
             }
             else
             {
-                var json = File.ReadAllText(@$"{path}\config.json");
-                var config = JsonConvert.DeserializeObject<Config>(json);
-
-                if (config != null)
-                {
-                    mapPath = config.mapFolder;
-                    etags = config.excludedTags;
-                }
-                else
-                {
-                    Console.WriteLine("Error Reading config! Delete config.json from Application folder and try again!");
-                    Console.ReadKey();
-                    Environment.Exit(0);
-                }
-
-                DecodeTagString(etags);
+                ReadConfig();
             }
 
             Console.Clear();
 
-            
+            Console.WriteLine("What do you want to do?");
+            Console.WriteLine("1. Download new Random maps");
+            Console.WriteLine("2. Change \'excluded Tags\'");
+            Console.WriteLine("3. Change map download path");
+            Console.WriteLine("Input: ");
+            input = Convert.ToInt32(Console.ReadLine());
+
+            switch (input)
+            {
+                case 1:
+                {
+                    GetAndHandleTMERMDfolders();
+                    CreateNewFolder();
+                    CreateTags();
+
+                    Console.WriteLine("How many maps? ");
+                    mapCount = Convert.ToInt16(Console.ReadLine());
+                    break;
+                }
+                case 2:
+                {
+                    
+                    break;
+                }
+                case 3:
+                {
+
+                    break;
+                }
+
+                default:
+                {
+                    break;
+                }
+            }
+        }
+
+        private static void CreateTags()
+        {
+            do
+            {
+                Console.Clear();
+
+                if (ChoosenTags.Count != 0)
+                {
+                    var choosenTagsString = "";
+                    ChoosenTags.ForEach(t =>
+                    {
+                        choosenTagsString += t + " ,";
+                    }
+                    );
+
+                    choosenTagsString = RemoveCharsEnd(choosenTagsString, 2);
+
+                    Console.Write($"Tags: {choosenTagsString}");
+                    Console.Write("\n");
+                }
+                else
+                {
+                    Console.WriteLine("Tags: (Default -> all)");
+                }
+
+                drawTags();
+                Console.Write("Input: ");
+                input = Convert.ToInt32(Console.ReadLine());
+                if (ChoosenTags.Contains(input))
+                {
+                    Console.WriteLine("");
+                    Console.WriteLine("Tag bereits benutzt!");
+                }
+                else
+                {
+                    ChoosenTags.Add(input);
+                }
+
+            } while (input != 0);
+        }
+
+        private static void CreateNewFolder()
+        {
+            Console.WriteLine(spacer);
+            Console.WriteLine("Creating new folder");
+
+            var time = DateTime.Now;
+            var name = $"{folderPrefix} - {time.DayOfWeek}-{time.Year}_{time.Hour}.{time.Minute}.{time.Second}";
+            Directory.CreateDirectory(@$"{mapPath}{name}");
+
+            mapPath += name;
+
+            Console.WriteLine($"Folder with name {name} created");
+            Console.WriteLine(spacer);
+            Console.Write("<Press Any Key to continue>");
+            Console.ReadKey();
+        }
+
+        private static void GetAndHandleTMERMDfolders()
+        {
             foreach (var folder in Directory.GetDirectories(mapPath))
             {
                 string folderName = getFolderNames(folder);
@@ -196,7 +206,7 @@ namespace TMERD
                 Console.WriteLine($"{TMERMD_Folders.Count} Folders of Random Maps already exisit");
 
                 DrawTMERMDfolders();
-                
+
                 Console.WriteLine("\n");
                 Console.WriteLine("Do you want to delete one or more?");
                 Console.WriteLine("0 = All");
@@ -251,63 +261,105 @@ namespace TMERD
                         }
                 }
             }
+        }
 
-            Console.WriteLine(spacer);
-            Console.WriteLine("Creating new folder");
+        private static void ReadConfig()
+        {
+            var json = File.ReadAllText(@$"{path}\config.json");
+            var config = JsonConvert.DeserializeObject<Config>(json);
 
-            var time = DateTime.Now;
-            var name = $"{folderPrefix} - {time.DayOfWeek}-{time.Year}_{time.Hour}.{time.Minute}.{time.Second}";
-            Directory.CreateDirectory(@$"{mapPath}{name}");
+            if (config != null)
+            {
+                mapPath = config.mapFolder;
+                etags = config.excludedTags;
+            }
+            else
+            {
+                Console.WriteLine("Error Reading config! Delete config.json from Application folder and try again!");
+                Console.ReadKey();
+                Environment.Exit(0);
+            }
 
-            mapPath += name;
+            DecodeTagString(etags);
+        }
 
-            Console.WriteLine($"Folder with name {name} created");
-            Console.WriteLine(spacer);
-            Console.Write("<Press Any Key to continue>");
-            Console.ReadKey();
+        private static void CreateConfig()
+        {
+            int input;
+            bool createFolderActive;
+            do
+            {
+                createFolderActive = false;
+
+                Console.Clear();
+                Console.WriteLine("Couldnt find the config.json on your system. Lets create it:");
+                Console.WriteLine("1. Copy the Path of the map Folder of your Trackmania installation.");
+                Console.WriteLine("2. Paste it here: ");
+                Console.Write("Path: ");
+                mapFolderPath = Console.ReadLine();
+
+                if (!Directory.Exists(mapFolderPath))
+                {
+                    Console.WriteLine("Path could not be found! \n");
+                    Console.WriteLine(mapFolderPath);
+                    Console.WriteLine("\n Please try again!");
+                    Console.ReadKey();
+                    createFolderActive = true;
+                }
+
+            } while (createFolderActive);
+
             do
             {
                 Console.Clear();
+                Console.WriteLine("Now you can set Tags that should be excluded.");
 
-                if (ChoosenTags.Count != 0)
+                if (eTags.Count != 0)
                 {
-                    var choosenTagsString = "";
-                    ChoosenTags.ForEach(t =>
-                        {
-                            choosenTagsString += t + " ,";
-                        }
+                    var eTagstring = "";
+                    eTags.ForEach(t =>
+                    {
+                        eTagstring += t + " ,";
+                    }
                     );
 
-                    choosenTagsString = RemoveCharsEnd(choosenTagsString, 2);
+                    eTagstring = RemoveCharsEnd(eTagstring, 2);
 
-                    Console.Write($"Tags: {choosenTagsString}");
+                    Console.Write($"Excluded Tags: {eTagstring}");
                     Console.Write("\n");
-                }
-                else
-                {
-                    Console.WriteLine("Tags: (Default -> all)");
                 }
 
                 drawTags();
+
                 Console.Write("Input: ");
                 input = Convert.ToInt32(Console.ReadLine());
-                if (ChoosenTags.Contains(input))
+                if (eTags.Contains(input))
                 {
                     Console.WriteLine("");
                     Console.WriteLine("Tag bereits benutzt!");
                 }
                 else
                 {
-                    ChoosenTags.Add(input);
+                    eTags.Add(input);
                 }
 
             } while (input != 0);
 
-            Console.WriteLine("How many maps? ");
-            mapCount = Convert.ToInt16(Console.ReadLine());
-        }
+            var etags = BuildTagString(eTags);
 
-        private static void DrawTMERMDfolders()
+            config = new Config()
+            {
+                mapFolder = @$"{mapFolderPath}\",
+                excludedTags = etags
+            };
+
+            string json = JsonConvert.SerializeObject(config);
+            File.WriteAllText(@$"{path}\config.json", json);
+
+
+            mapPath = @$"{mapFolderPath}\";
+        }
+       private static void DrawTMERMDfolders()
         {
             int i = 0;
             foreach (var folder in TMERMD_Folders)
